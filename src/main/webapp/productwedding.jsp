@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%--<html lang="en">--%>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
+<%--    <meta charset="UTF-8">--%>
     <title>婚品汇——WeddingCollection</title>
     <script src="js/jquery-1.8.3.min.js"></script>
     <script src="js/jquery.fly.min.js"></script>
@@ -87,8 +87,8 @@
 <div class="wraper" style="margin-top: 70px">
     <div class="nav" style="font-size: 20px;font-family:楷体">
         <ul id="menus">
-            <li style="background-color:#ea5dac;"><a href="index.jsp" style="color:#ffffff;">商 城 首 页</a></li>
-            <li><a href="#">婚 纱 礼 服</a></li>
+            <li><a href="index.jsp">商 城 首 页</a></li>
+            <li style="background-color:#ea5dac;"><a href="#" style="color:#ffffff;">婚 纱 礼 服</a></li>
             <li><a href="#">婚 房 布 置</a></li>
             <li><a href="#">婚 庆 床 品</a></li>
             <li><a href="#">婚 宴 酒 水</a></li>
@@ -96,197 +96,55 @@
         </ul>
     </div>
 </div>
-<!-- 轮播图 -->
-<div class="banner_wrap">
-    <div class="left"> <</div>
-    <div class="right">></div>
-    <ul>
-        <li class="on" style="display: block"><img src="img/slide1.jpg" height="392px" /></li>
-        <li><img src="img/slide2.jpg" height="392px" /></li>
-        <li><img src="img/slide3.jpg" height="392px" /></li>
-        <li><img src="img/slide4.jpg" height="392px" /></li>
-        <li><img src="img/slide1.jpg" height="392px" /></li>
-    </ul>
-    <div class="banner_select">
-        <ul>
-            <li> <a style="text-decoration: none; ">A</a> </li>
-            <li> <a style="text-decoration: none; ">B</a> </li>
-            <li> <a style="text-decoration: none; ">C</a> </li>
-            <li> <a style="text-decoration: none; ">D</a> </li>
-            <li> <a style="text-decoration: none; " class="last">E</a> </li>
-        </ul>
-        <div class="J_trigger_line"></div>
-    </div>
-</div>
 
-<!-- 热门商品 -->
-<div class="container">
-
-    <!-- 文字标题部分 -->
-    <div class="row" style="font-size: 30px;padding-left: 15px;margin-top: 20px">
-        <span style="color: #9f2c6c;font-size: 28px; font-family:楷体">热门商品&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/title2.jpg" /></span>
-    </div>
+<!--商品分类展示-->
+<div class="container" style="margin-top: 70px; margin-bottom: 30px;">
 
     <!-- 商品图片部分 -->
-    <div class="row">
-        <!-- 左边  商品图片展示 -->
-        <div class="col-lg-2 col-md-2 hidden-sm hidden-xs" style="height: 400px">
-            <img src="img/big02.jpg" height="100%" />
-        </div>
-        <!-- 右边商品图片展示 -->
-        <div class="col-lg-10 col-md-10">
-
-            <!-- 上一行 newList -->
-            <div class="row">
-                <!-- 左边大图效果 -->
-                <div class="col-lg-6 col-md-6 hidden-sm hidden-xs" style="width: 480px;height: 200px;">
-                    <a href="#"><img src="img/middle02.jpg" width="100%" height="100%" /></a>
-                </div>
-
-                <!-- 右边小图效果 -->
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="img/small06.jpg" /></a><br>
-                    <p><a href="#">婚纱</a></p>
-                    <p><a href="#">￥399</a></p>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="img/small07.jpg" /></a><br>
-                    <p><a href="#">礼服</a></p>
-                    <p><a href="#">￥399</a></p>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="img/small03.jpg" /></a><br>
-                    <p><a href="#">中式婚纱</a></p>
-                    <p><a href="#">￥399</a></p>
-                </div>
-            </div>
-
-            <!-- 下一行 -->
-            <div class="row" style="margin-top: 20px">
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="img/small04.jpg" /></a><br>
-                    <p><a href="#">抹胸裙</a></p>
-                    <p><a href="#">￥399</a></p>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="img/small05.jpg" /></a><br>
-                    <p><a href="#">喜糖</a></p>
-                    <p><a href="#">￥399</a></p>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="img/small06.jpg" /></a><br>
-                    <p><a href="#">婚纱</a></p>
-                    <p><a href="#">￥399</a></p>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="img/small07.jpg" /></a><br>
-                    <p><a href="#">礼服</a></p>
-                    <p><a href="#">￥399</a></p>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="img/small03.jpg" /></a><br>
-                    <p><a href="#">中式婚纱</a></p>
-                    <p><a href="#">￥399</a></p>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="img/small05.jpg" /></a><br>
-                    <p><a href="#">喜糖</a></p>
-                    <p><a href="#">￥399</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- 广告区域 -->
-<div class="container">
-    <div class="row" style="padding-left: 15px;margin-top: 15px">
-        <img src="img/ad01.jpg" width="99%" />
-    </div>
-</div>
-
-<!-- 最新商品 -->
-<div class="container">
-
-    <!-- 文字标题部分 -->
-    <div class="row" style="font-size: 30px;padding-left: 15px;margin-top: 20px">
-        <span style="color: #9f2c6c;font-size: 28px; font-family:楷体">猜你喜欢&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/title2.jpg" /></span>
-    </div>
-
-    <!-- 商品图片部分 -->
-    <div class="row">
-
-        <!-- 左边  商品图片展示 -->
-        <div class="col-lg-2 col-md-2 hidden-sm hidden-xs" style="height: 400px">
-            <img src="img/big02.jpg" height="100%" />
-        </div>
+    <div class="row"  style="margin-left: 130px">
 
         <!-- 右边  商品图片展示 -->
         <div class="col-lg-10 col-md-10">
 
-            <!-- 上一行 newList -->
+            <!-- 上一行 -->
             <div class="row">
-                <!-- 左边大图效果 -->
-                <div class="col-lg-6 col-md-6 hidden-sm hidden-xs" style="width: 480px;height: 200px;">
-                    <a href="#"><img src="img/middle02.jpg" width="100%" height="100%" /></a>
-                </div>
-
-                <!-- 右边小图效果 -->
                 <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="img/small06.jpg" /></a><br>
-                    <p><a href="#">婚纱</a></p>
-                    <p><a href="#">￥399</a></p>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="img/small07.jpg" /></a><br>
-                    <p><a href="#">礼服</a></p>
-                    <p><a href="#">￥399</a></p>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="img/small03.jpg" /></a><br>
+                    <a href="#"><img src="products/1/c_0001.jpg" style="width: 130px"/></a><br>
                     <p><a href="#">中式婚纱</a></p>
-                    <p><a href="#">￥399</a></p>
+                    <p><a href="#">￥1399</a></p>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
+                    <a href="#"><img src="products/1/c_0010.jpg" style="width: 130px"/></a><br>
+                    <p><a href="#">中式婚礼秀禾服</a></p>
+                    <p><a href="#">￥2699</a></p>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
+                    <a href="#"><img src="products/1/c_0011.jpg" style="width: 130px"/></a><br>
+                    <p><a href="#">秀禾服</a></p>
+                    <p><a href="#">￥2399</a></p>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
+                    <a href="#"><img src="products/1/c_0012.jpg" style="width: 130px"/></a><br>
+                    <p><a href="#">韩式婚纱伴娘服</a></p>
+                    <p><a href="#">￥1899</a></p>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
+                    <a href="#"><img src="products/1/c_0013.jpg" style="width: 130px"/></a><br>
+                    <p><a href="#">婚纱</a></p>
+                    <p><a href="#">￥2599</a></p>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
+                    <a href="#"><img src="products/1/c_0014.jpg" style="width: 130px"/></a><br>
+                    <p><a href="#">森系轻婚纱礼服</a></p>
+                    <p><a href="#">￥1899</a></p>
                 </div>
             </div>
 
-            <!-- 下一行 -->
-            <div class="row" style="margin-top: 20px">
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="img/small04.jpg" /></a><br>
-                    <p><a href="#">抹胸裙</a></p>
-                    <p><a href="#">￥399</a></p>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="img/small05.jpg" /></a><br>
-                    <p><a href="#">喜糖</a></p>
-                    <p><a href="#">￥399</a></p>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="img/small06.jpg" /></a><br>
-                    <p><a href="#">婚纱</a></p>
-                    <p><a href="#">￥399</a></p>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="img/small07.jpg" /></a><br>
-                    <p><a href="#">礼服</a></p>
-                    <p><a href="#">￥399</a></p>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="img/small03.jpg" /></a><br>
-                    <p><a href="#">中式婚纱</a></p>
-                    <p><a href="#">￥399</a></p>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="img/small05.jpg" /></a><br>
-                    <p><a href="#">喜糖</a></p>
-                    <p><a href="#">￥399</a></p>
-                </div>
-            </div>
         </div>
+
     </div>
+
 </div>
-
-
 <!--footer-->
 <div class="foot">
     <div class="foot-box">
