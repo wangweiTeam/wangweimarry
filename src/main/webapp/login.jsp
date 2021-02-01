@@ -6,10 +6,15 @@
     <link rel="icon" href="img/favicon.png" size="16x16 32x32">
     <script src="js/jquery-3.4.1.js"></script>
     <script src="js/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="js/login.js"></script>
     <script src="js/jquery.validate.min.js" type="text/javascript"></script>
     <script src="js/login-validate.js" type="text/javascript"></script>
-    <script src="js/login.js"></script>
     <link rel="stylesheet" href="css/login.css" />
+    <style type="text/css">
+        .error{
+            color: red;
+        }
+    </style>
 </head>
 <body>
 
@@ -27,8 +32,7 @@
                 <button id="create">创建账户</button>
                 <p class="message">已经有了一个账户? <a href="#">立刻登录</a></p>
             </form>
-            <form  id="loginForm" class="login-form" method="POST" action="user?method=login">
-
+            <form  id="loginForm" class="login-form" method="post" action="user?method=login">
                 <input type="text" placeholder="用户名" id="user_name" name="login_username" />
                 <input type="password" placeholder="密码" id="password" name="login_password" />
                 <c:if test="${msg!=null}">

@@ -9,13 +9,13 @@ import java.util.Date;
  */
 public class Product {
     private String pid;
-    private String pname;
-    private double market_price;
-    private double shop_price;
-    private String pimage;
+    private String pname; //商品名称
+    private double market_price; //市场价格
+    private double shop_price;   //售卖价格
+    private String pimage;       //图片
     private Date pdate;
-    private int is_hot;
-    private String pdesc;
+    private int is_hot;          //是否是热门商品
+    private String pdesc;        //商品描述
     private int pflag;
     private String cid;
 

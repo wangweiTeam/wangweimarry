@@ -41,6 +41,13 @@ public class UserServlet extends BaseServlet {
         }
         request.setAttribute("msg","用户名和密码不匹配！");
         request.getRequestDispatcher("login.jsp").forward(request,response);
+    }
 
+    //阳：退出登录
+    public void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        //直接销毁session
+        session.invalidate();
+        request.getRequestDispatcher(request.getContextPath()+"/product?method=index").forward(request,response);
     }
 }
