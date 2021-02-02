@@ -152,57 +152,15 @@
                     <a href="#"><img src="img/middle02.jpg" width="100%" height="100%" /></a>
                 </div>
 
-                <!-- 右边小图效果 -->
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="img/small06.jpg" /></a><br>
-                    <p><a href="#">婚纱</a></p>
-                    <p><a href="#">￥399</a></p>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="img/small07.jpg" /></a><br>
-                    <p><a href="#">礼服</a></p>
-                    <p><a href="#">￥399</a></p>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="img/small03.jpg" /></a><br>
-                    <p><a href="#">中式婚纱</a></p>
-                    <p><a href="#">￥399</a></p>
-                </div>
-            </div>
-
-            <!-- 下一行 -->
-            <div class="row" style="margin-top: 20px">
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="img/small04.jpg" /></a><br>
-                    <p><a href="#">抹胸裙</a></p>
-                    <p><a href="#">￥399</a></p>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="img/small05.jpg" /></a><br>
-                    <p><a href="#">喜糖</a></p>
-                    <p><a href="#">￥399</a></p>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="img/small06.jpg" /></a><br>
-                    <p><a href="#">婚纱</a></p>
-                    <p><a href="#">￥399</a></p>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="img/small07.jpg" /></a><br>
-                    <p><a href="#">礼服</a></p>
-                    <p><a href="#">￥399</a></p>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="img/small03.jpg" /></a><br>
-                    <p><a href="#">中式婚纱</a></p>
-                    <p><a href="#">￥399</a></p>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="img/small05.jpg" /></a><br>
-                    <p><a href="#">喜糖</a></p>
-                    <p><a href="#">￥399</a></p>
-                </div>
-            </div>
+                <c:forEach items="${requestScope.productHot}" var="product">
+                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
+                        <a href="#">
+                            <img src="${path}/${product.pimage}" width="130px" height="130px"/>
+                        </a><br>
+                        <p><a href="#">${product.pname}</a></p>
+                        <p><a href="#">￥${product.shop_price}</a></p>
+                    </div>
+                </c:forEach>
         </div>
     </div>
 </div>

@@ -8,21 +8,22 @@ import java.util.Date;
  * @Date 2021/1/30 21:58
  */
 public class Product {
-    private String pid;
+    private int pid;      //商品编号 （为String最好，这里纯粹为了合作原因）
     private String pname; //商品名称
-    private double market_price; //市场价格
-    private double shop_price;   //售卖价格
+    private double market_price; //参考价格
+    private double shop_price;   //实际价格
     private String pimage;       //图片
-    private Date pdate;
+    private Date pdate;          //上架日期
     private int is_hot;          //是否是热门商品
     private String pdesc;        //商品描述
-    private int pflag;
-    private String cid;
+    private int pflag;           //是否上下架 1上架 0下架
+    private String cid;          //当前所属类别
+
 
     public Product() {
     }
 
-    public Product(String pid, String pname, double market_price, double shop_price, String pimage, Date pdate, int is_hot, String pdesc, int pflag, String cid) {
+    public Product(int pid, String pname, double market_price, double shop_price, String pimage, Date pdate, int is_hot, String pdesc, int pflag, String cid) {
         this.pid = pid;
         this.pname = pname;
         this.market_price = market_price;
@@ -39,7 +40,7 @@ public class Product {
      * 获取
      * @return pid
      */
-    public String getPid() {
+    public int getPid() {
         return pid;
     }
 
@@ -47,7 +48,7 @@ public class Product {
      * 设置
      * @param pid
      */
-    public void setPid(String pid) {
+    public void setPid(int pid) {
         this.pid = pid;
     }
 
@@ -196,6 +197,6 @@ public class Product {
     }
 
     public String toString() {
-        return "product{pid = " + pid + ", pname = " + pname + ", market_price = " + market_price + ", shop_price = " + shop_price + ", pimage = " + pimage + ", pdate = " + pdate + ", is_hot = " + is_hot + ", pdesc = " + pdesc + ", pflag = " + pflag + ", cid = " + cid + "}";
+        return "Product{pid = " + pid + ", pname = " + pname + ", market_price = " + market_price + ", shop_price = " + shop_price + ", pimage = " + pimage + ", pdate = " + pdate + ", is_hot = " + is_hot + ", pdesc = " + pdesc + ", pflag = " + pflag + ", cid = " + cid + "}";
     }
 }
