@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" isELIgnored="false" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<%--    <meta charset="UTF-8">--%>
+    <meta charset="UTF-8">
     <title>婚品汇——WeddingCollection</title>
     <script src="js/jquery-1.8.3.min.js"></script>
     <script src="js/jquery.fly.min.js"></script>
@@ -16,6 +17,8 @@
     <link rel="stylesheet" href="css/index.css" />
 </head>
 <body>
+<c:set value="${pageContext.request.contextPath}" scope="application" var="path"></c:set>
+<input type="hidden" value="${vo.query1}" id="cid">
 <!--头部-->
 <div class="top">
     <div class="top-box">
@@ -65,7 +68,12 @@
         </div>
         <ul id="top-right-box1">
             <li><a href="index.jsp">首页</a></li>
-            <li><a href="login.jsp">登录/注册</a></li>
+            <c:if test="${sessionScope.user==null}">
+                <li><a href="login.jsp">登录/注册</a></li>
+            </c:if>
+            <c:if test="${sessionScope.user!=null}">
+                <li>欢迎${sessionScope.user.username}/<a href="${path}/user?method=logout">退出</a></li>
+            </c:if>
             <li><a href="personalcenter.jsp">个人中心</a></li>
             <li><a href="#">商铺中心</a></li>
             <li><a href="#">客户服务</a></li>
@@ -75,8 +83,8 @@
 </div>
 
 <div class="head-logo">
-    <form id="schbox" style="width: 400px; height: 30px; border: #c3488d solid 1px;">
-        <input type="text" placeholder="请输入查询关键词" style="border: hidden; width: 320px; height: 26px;"/>
+    <form action="${path}/product?method?product?method=viewProductListByCidPname&cid=${vo.query1}" id="schbox" style="width: 400px; height: 30px; border: #c3488d solid 1px;">
+        <input type="text" placeholder="请输入查询关键词" style="border: hidden; width: 320px; height: 26px;" name="pname"/>
         <input type="submit" value="GO" style=" font-size: 12px; width: 26px; height: 26px;/*上下留有1px空隙，美观一点*/"/>
     </form>
     <div class="c-logo">
@@ -87,12 +95,7 @@
 <div class="wraper" style="margin-top: 70px">
     <div class="nav" style="font-size: 20px;font-family:楷体">
         <ul id="menus">
-            <li><a href="index.jsp">商 城 首 页</a></li>
-            <li style="background-color:#ea5dac;"><a href="#" style="color:#ffffff;">婚 纱 礼 服</a></li>
-            <li><a href="#">婚 房 布 置</a></li>
-            <li><a href="#">婚 庆 床 品</a></li>
-            <li><a href="#">婚 宴 酒 水</a></li>
-            <li><a href="#">喜 糖 请 柬</a></li>
+            <li><a href="${path}/product?method=index">商 城 首 页</a></li>
         </ul>
     </div>
 </div>
@@ -108,43 +111,68 @@
 
             <!-- 上一行 -->
             <div class="row">
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="products/1/c_0001.jpg" style="width: 130px"/></a><br>
-                    <p><a href="#">中式婚纱</a></p>
-                    <p><a href="#">￥1399</a></p>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="products/1/c_0010.jpg" style="width: 130px"/></a><br>
-                    <p><a href="#">中式婚礼秀禾服</a></p>
-                    <p><a href="#">￥2699</a></p>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="products/1/c_0011.jpg" style="width: 130px"/></a><br>
-                    <p><a href="#">秀禾服</a></p>
-                    <p><a href="#">￥2399</a></p>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="products/1/c_0012.jpg" style="width: 130px"/></a><br>
-                    <p><a href="#">韩式婚纱伴娘服</a></p>
-                    <p><a href="#">￥1899</a></p>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="products/1/c_0013.jpg" style="width: 130px"/></a><br>
-                    <p><a href="#">婚纱</a></p>
-                    <p><a href="#">￥2599</a></p>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                    <a href="#"><img src="products/1/c_0014.jpg" style="width: 130px"/></a><br>
-                    <p><a href="#">森系轻婚纱礼服</a></p>
-                    <p><a href="#">￥1899</a></p>
-                </div>
+                <c:forEach items="${vo.list}" var="product">
+                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
+                        <a href="${path}/product?method=viewProductByPid&pid=${product.pid}&cid=${product.cid}"><img src="${path}/${product.pimage}" width="130px" height="130px"/></a><br>
+                        <p><a href="${path}/product?method=viewProductByPid&pid=${product.pid}&cid=${product.cid}">${product.pname}</a></p>
+                        <p style="color:#E4393C;">￥${product.shop_price}</p>
+                    </div>
+                </c:forEach>
             </div>
-
         </div>
-
     </div>
-
 </div>
+
+<div class="row" style="text-align: center">
+    <%--分页按钮--%>
+    <nav aria-label="Page navigation">
+        <ul class="pagination pagination-lg">
+<%--            当处于第一页时上一页按钮无法按下--%>
+            <c:if test="${vo.pageNow==1}">
+                <li class="disabled">
+                    <a href="JavaScript:void(0)" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            </c:if>
+<%--    当不是处于第一页时上一页按钮可以按下--%>
+            <c:if test="${vo.pageNow!=1}">
+                <li>
+                    <a href="${path}/product?method=viewProductListByCidPname&cid=${vo.query1}&pname=${vo.query2}&pageNow=${vo.pageNow-1}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            </c:if>
+            <c:forEach begin="1" end="${vo.myPages}" var="page">
+<%--                如果是当前页就显示已点击状态--%>
+                <c:if test="${vo.pageNow==page}">
+                    <li class="active"><a href="${path}/product?method=viewProductListByCidPname&cid=${vo.query1}&pname=${vo.query2}&pageNow=${page}">${page}</a></li>
+                </c:if>
+<%--                如果不是当前页就显示可点击状态--%>
+                <c:if test="${vo.pageNow!=page}">
+                    <li><a href="${path}/product?method=viewProductListByCidPname&cid=${vo.query1}&pname=${vo.query2}&pageNow=${page}">${page}</a></li>
+                </c:if>
+            </c:forEach>
+<%--    如果当前页是最后一页则无法点击下一页--%>
+            <c:if test="${vo.pageNow==vo.myPages}">
+                <li class="disabled">
+                    <a href="JavaScript:void(0)" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </c:if>
+            <c:if test="${vo.pageNow!=vo.myPages}">
+                <li>
+                    <a href="${path}/product?method=viewProductListByCidPname&cid=${vo.query1}&pname=${vo.query2}&pageNow=${vo.pageNow+1}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </c:if>
+        </ul>
+    </nav>
+</div>
+
+
 <!--footer-->
 <div class="foot">
     <div class="foot-box">
@@ -174,18 +202,18 @@
         }
 
         $(".banner_select>ul li").hover(function() {
-            aa = this.id
+            aa = this.id;
             $(".J_trigger_line").css({
                 "left": (this.id * 195)
-            })
-            $(".banner_wrap>ul li").eq(this.id).addClass("on").siblings(this).removeClass("on");;
+            });
+            $(".banner_wrap>ul li").eq(this.id).addClass("on").siblings(this).removeClass("on");
             $(".banner_wrap>ul li").eq(this.id).fadeIn(500).siblings(this).fadeOut(500);
         });
 
         function move() {
             $(".J_trigger_line").css({
                 "left": (aa * 195)
-            })
+            });
             $(".banner_wrap>ul li").eq(aa).addClass("on").siblings(aa).removeClass("on");
             $(".banner_wrap>ul li").eq(aa).fadeIn(500).siblings(aa).fadeOut(500);
         }
@@ -211,7 +239,7 @@
             aa -= 2;
             move();
             aa++;
-        })
+        });
         $(".right").click(function() {
             if(aa == 5) {
                 aa = 0;
@@ -225,4 +253,23 @@
 
 </script>
 </body>
+<script>
+    var data = "";
+    $.ajax({
+        type:"GET",
+        url:"${path}/category?method=viewAllCategory",
+        dataType:"json",
+        success:function(categoryList){
+            for (var i in categoryList){
+                if ($("#cid").val() === categoryList[i].cid){
+                    data += "<li style=\"background-color:#ea5dac;\"><a href='${path}/product?method=viewProductListByCidPname&cid="+categoryList[i].cid+"' style=\"color:#ffffff;\">" + categoryList[i].cname+"</a></li>";
+                } else{
+                    data += "<li><a href='${path}/product?method=viewProductListByCidPname&cid="+categoryList[i].cid+"'>" + categoryList[i].cname+"</a></li>";
+                }
+            }
+            console.log(data);
+            $("#menus").append(data);
+        }
+    });
+</script>
 </html>

@@ -68,7 +68,7 @@
             </div>
         </div>
         <ul id="top-right-box1">
-            <li><a href="index.jsp">首页</a></li>
+            <li><a href="${path}/product?method=index">首页</a></li>
             <c:if test="${sessionScope.user==null}">
                 <li><a href="login.jsp">登录/注册</a></li>
             </c:if>
@@ -85,7 +85,7 @@
 
 <div class="head-logo">
     <form id="schbox" style="width: 400px; height: 30px; border: #c3488d solid 1px;">
-        <input type="text" placeholder="请输入查询关键词" style="border: hidden; width: 320px; height: 26px;"/>
+        <input type="text" placeholder="请输入查询关键词" style="border: hidden; width: 320px; height: 26px;" name="pname"/>
         <input type="submit" value="GO" style=" font-size: 12px; width: 26px; height: 26px;/*上下留有1px空隙，美观一点*/"/>
     </form>
     <div class="c-logo">
@@ -96,12 +96,8 @@
 <div class="wraper" style="margin-top: 70px">
     <div class="nav" style="font-size: 20px;font-family:楷体">
         <ul id="menus">
-            <li style="background-color:#ea5dac;"><a href="index.jsp" style="color:#ffffff;">商 城 首 页</a></li>
-            <li><a href="#">婚 纱 礼 服</a></li>
-            <li><a href="#">婚 房 布 置</a></li>
-            <li><a href="#">婚 庆 床 品</a></li>
-            <li><a href="#">婚 宴 酒 水</a></li>
-            <li><a href="#">喜 糖 请 柬</a></li>
+            <li style="background-color:#ea5dac;"><a href="${path}/product?method=index" style="color:#ffffff;">商 城 首 页</a></li>
+       <%--商品分类内容--%>
         </ul>
     </div>
 </div>
@@ -154,13 +150,14 @@
 
                 <c:forEach items="${requestScope.productHot}" var="product">
                     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="center">
-                        <a href="#">
+                        <a href="${path}/product?method=viewProductByPid&pid=${product.pid}&cid=${product.cid}">
                             <img src="${path}/${product.pimage}" width="130px" height="130px"/>
                         </a><br>
-                        <p><a href="#">${product.pname}</a></p>
-                        <p><a href="#">￥${product.shop_price}</a></p>
+                        <p><a href="${path}/product?method=viewProductByPid&pid=${product.pid}&cid=${product.cid}">${product.pname}</a></p>
+                        <p  style="color:#E4393C;">￥${product.shop_price}</p>
                     </div>
                 </c:forEach>
+            </div>
         </div>
     </div>
 </div>
@@ -334,4 +331,18 @@
 
 </script>
 </body>
+<script>
+    var data = "";
+    $.ajax({
+        type:"get",
+        url:"${path}/category?method=viewAllCategory",
+        dataType:"json",
+        success:function(categoryList){
+            for (var i in categoryList){
+                data += "<li><a href='${path}/product?method=viewProductListByCidPname&cid="+categoryList[i].cid+"'>" + categoryList[i].cname+"</a></li>";
+            }
+            $("#menus").append(data);
+        }
+    });
+</script>
 </html>

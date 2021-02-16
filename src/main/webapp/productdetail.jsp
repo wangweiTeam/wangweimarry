@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" isELIgnored="false" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <%--<html lang="en">--%>
 <head>
@@ -49,14 +50,19 @@
         })
     </script>
 </head>
-</head>
 <body>
+<c:set value="${pageContext.request.contextPath}" scope="application" var="path"></c:set>
 <!--头 -->
 <div class="top">
     <div class="top-box">
         <ul id="top-right-box1">
-            <li><a href="index.jsp">首页</a></li>
-            <li><a href="login.jsp">登录/注册</a></li>
+            <li><a href="${path}/product?method=index">首页</a></li>
+            <c:if test="${sessionScope.user==null}">
+                <li><a href="login.jsp">登录/注册</a></li>
+            </c:if>
+            <c:if test="${sessionScope.user!=null}">
+                <li>欢迎${sessionScope.user.username}/<a href="${path}/user?method=logout">退出</a></li>
+            </c:if>
             <li><a href="personalcenter.jsp">个人中心</a></li>
             <li><a href="#">商铺中心</a></li>
             <li><a href="#">客户服务</a></li>
@@ -65,25 +71,24 @@
     </div>
 </div>
 
-<body>
 <div class="Xcontent">
     <ul class="Xcontent01">
 
-        <div class="Xcontent06"><img src="images/shangpinxiangqing/1.png"></div>
+        <div class="Xcontent06"><img src="${path}/${product.pimage}" width="440px" height="440px"></div>
         <ol class="Xcontent08">
-            <div class="Xcontent07"><img src="images/shangpinxiangqing/1.png"></div>
-            <div class="Xcontent09"><img src="images/shangpinxiangqing/X6.png"></div>
-            <div class="Xcontent10"><img src="images/shangpinxiangqing/X3.png"></div>
-            <div class="Xcontent11"><img src="images/shangpinxiangqing/X4.png"></div>
-            <div class="Xcontent12"><img src="images/shangpinxiangqing/X5.png"></div>
+            <div class="Xcontent07"><img src="${path}/${product.pimage}"></div>
+            <div class="Xcontent09"><img src="${path}/${product.pimage}"></div>
+            <div class="Xcontent10"><img src="${path}/${product.pimage}"></div>
+            <div class="Xcontent11"><img src="${path}/${product.pimage}"></div>
+            <div class="Xcontent12"><img src="${path}/${product.pimage}"></div>
         </ol>
         <ol class="Xcontent13">
-            <div class="Xcontent14"><a href="#"><p>新物品</p></a></div>
+            <div class="Xcontent14"><a href="#"><p>${product.pname}</p></a></div>
             <div class="Xcontent15"><img src="images/shangpinxiangqing/X11.png"></div>
-            <div class="Xcontent16"><p>中式礼服</p></div>
+            <div class="Xcontent16"><p>${cname}</p></div>
             <div class="Xcontent17">
                 <p class="Xcontent18">售价</p>
-                <p class="Xcontent19">￥<span>399.00</span></p>
+                <p class="Xcontent19">￥<span>${product.shop_price}</span></p>
                 <div class="Xcontent20">
                     <p class="Xcontent21">促销</p>
                     <img src="images/shangpinxiangqing/X12.png">
@@ -97,14 +102,15 @@
             </div>
             <div class="Xcontent26">
                 <p class="Xcontent27">颜色</p>
-                <div class="Xcontent28"><img  src="images/shangpinxiangqing/14.png"></div>
-                <div class="Xcontent29"><img  src="images/shangpinxiangqing/1.png"></div>
+                <div class="Xcontent28"><img  src="${path}/${product.pimage}"></div>
+                <div class="Xcontent29"><img  src="${path}/${product.pimage}"></div>
             </div>
             <div class="Xcontent30">
                 <p class="Xcontent31">数量</p>
                 <div class="Xcontent32"><img src="images/shangpinxiangqing/X15.png"></div>
                 <form>
-                    <input class="input" value="1"></form>
+                    <input class="input" value="1">
+                </form>
                 <div class="Xcontent33"><img src="images/shangpinxiangqing/16.png"></div>
 
             </div>
