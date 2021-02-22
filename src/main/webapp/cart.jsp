@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" isELIgnored="false" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%--<html lang="en">--%>
 <head>
@@ -138,11 +139,12 @@
 </head>
 
 <body>
+<c:set var="path" scope="application" value="${pageContext.request.contextPath}"></c:set>
 <!--头 -->
 <div class="top">
     <div class="top-box">
         <ul id="top-right-box1">
-            <li><a href="index.jsp">首页</a></li>
+            <li><a href="${path}/product?method=index">首页</a></li>
             <li><a href="personalcenter.jsp">个人中心</a></li>
             <li><a href="#">商铺中心</a></li>
             <li><a href="#">客户服务</a></li>
@@ -150,107 +152,149 @@
         </ul>
     </div>
 </div>
+<%--如果购物车没有商品就显示购物车为空--%>
+<c:if test="${empty cart.map}">
+    <div style="width: 380px; height: 370px; margin: auto;margin-top: 150px">
+        <img src="images/cart-empty.png">
+    </div>
+</c:if>
 
-<div class="shopping-car-container">
-    <div class="car-headers-menu">
-        <div class="row">
-            <div class="col-md-1 car-menu">
-                <label><input type="checkbox" id="check-goods-all" /><span id="checkAll">全选</span></label>
+<c:if test="${!empty cart.map}">
+    <div class="shopping-car-container">
+        <div class="car-headers-menu">
+            <div class="row">
+                <div class="col-md-1 car-menu">
+                    <label><input type="checkbox" id="check-goods-all" /><span id="checkAll">全选</span></label>
+                </div>
+                <div class="col-md-3 car-menu">商品信息</div>
+                <div class="col-md-3 car-menu">商品参数</div>
+                <div class="col-md-1 car-menu">单价</div>
+                <div class="col-md-2 car-menu">数量</div>
+                <div class="col-md-1 car-menu">金额</div>
+                <div class="col-md-1 car-menu">操作</div>
             </div>
-            <div class="col-md-3 car-menu">商品信息</div>
-            <div class="col-md-3 car-menu">商品参数</div>
-            <div class="col-md-1 car-menu">单价</div>
-            <div class="col-md-1 car-menu">数量</div>
-            <div class="col-md-1 car-menu">金额</div>
-            <div class="col-md-2 car-menu">操作</div>
         </div>
-    </div>
-    <div class="goods-content">
-        <!--goods display-->
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-body bottom-menu-include">
-            <div class="col-md-1 check-all-bottom bottom-menu">
-                <label>
-                    <input type="checkbox" id="checked-all-bottom" />
-                    <span id="checkAllBottom">全选</span>
-                </label>
-            </div>
-            <div class="col-md-1 bottom-menu">
+        <div class="goods-content">
+            <!--goods display-->
+            <c:forEach items="${cart.map}" var="entry">
+                <div class="goods-item">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="col-md-1 car-goods-info">
+                                <label><input type="checkbox" class="goods-list-item" value="${entry.value.product.pid}"></label>
+                             </div>
+                            <div class="col-md-3 car-goods-info goods-image-column" >
+                                <img class="goods-image" src="${path}/${entry.value.product.pimage}" style="width: 100px; height: 100px;">
+                                <span id="goods-info">${entry.value.product.pdesc}</span>
+                            </div>
+                            <div class="col-md-3 car-goods-info goods-params">${entry.value.product.pname}</div>
+                            <div class="col-md-1 car-goods-info goods-price"><span>￥</span><span
+                                    class="single-price">${entry.value.product.shop_price}</span></div>
+                            <div class="col-md-2 car-goods-info goods-counts">
+                                <div class="input-group">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-default car-decrease">-</button>
+                                    </div>
+                                    <input type="text" class="form-control goods-count" value="${entry.value.buyNum}">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-default car-add">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-1 car-goods-info goods-money-count"><span>￥</span><span class="single-total">${entry.value.subTotal}</span>
+                            </div>
+                            <div class="col-md-1 car-goods-info goods-operate">
+                                <a href="${path}/cart?method=delCart&pid=${entry.value.product.pid}" ><button type="button" class="btn btn-danger item-delete">删除</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body bottom-menu-include">
+                <div class="col-md-1 check-all-bottom bottom-menu">
+                    <label>
+                        <input type="checkbox" id="checked-all-bottom" />
+                        <span id="checkAllBottom">全选</span>
+                    </label>
+                </div>
+                <div class="col-md-1 bottom-menu">
 						<span id="deleteMulty">
 								删除
 						</span>
-            </div>
-            <div class="col-md-6 bottom-menu">
+                </div>
+                <div class="col-md-5 bottom-menu">
 
-            </div>
-            <div class="col-md-2 bottom-menu">
-                <span>已选商品 <span id="selectGoodsCount">0</span> 件</span>
-            </div>
-            <div class="col-md-1 bottom-menu">
-                <span>合计：<span id="selectGoodsMoney">0.00</span></span>
-            </div>
-            <a href="order.jsp">
-                <div class="col-md-1 bottom-menu submitData submitDis">
-                    提交订单
                 </div>
-            </a>
-        </div>
-    </div>
-    <!--删除确认弹框-->
-    <div class="modal fade" tabindex="-1" role="dialog" id="deleteItemTip" aria-labelledby="gridSystemModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
+                <div class="col-md-2 bottom-menu">
+                    <span>已选商品 <span id="selectGoodsCount">0</span> 件</span>
                 </div>
-                <div class="modal-body">
-                    确认删除此商品？
+                <div class="col-md-2 bottom-menu">
+                    <span>合计：<span id="selectGoodsMoney">0.00</span>元</span>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary deleteSure">确定</button>
-                </div>
+                <a href="order.jsp">
+                    <div class="col-md-1 bottom-menu submitData submitDis">
+                        提交订单
+                    </div>
+                </a>
             </div>
         </div>
-    </div>
-    <!--是否勾选商品提示-->
-    <div class="modal fade" tabindex="-1" role="dialog" id="selectItemTip" aria-labelledby="gridSystemModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
-                </div>
-                <div class="modal-body">
-                    请选择要删除的商品！
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+        <!--删除确认弹框-->
+        <div class="modal fade" tabindex="-1" role="dialog" id="deleteItemTip" aria-labelledby="gridSystemModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
+                    </div>
+                    <div class="modal-body">
+                        确认删除此商品？
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary deleteSure">确定</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!--批量删除商品-->
-    <div class="modal fade" tabindex="-1" role="dialog" id="deleteMultyTip" aria-labelledby="gridSystemModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
+        <!--是否勾选商品提示-->
+        <div class="modal fade" tabindex="-1" role="dialog" id="selectItemTip" aria-labelledby="gridSystemModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
+                    </div>
+                    <div class="modal-body">
+                        请选择要删除的商品！
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    确认删除选择的商品！
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary deleteMultySure">确定</button>
+            </div>
+        </div>
+        <!--批量删除商品-->
+        <div class="modal fade" tabindex="-1" role="dialog" id="deleteMultyTip" aria-labelledby="gridSystemModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
+                    </div>
+                    <div class="modal-body">
+                        确认删除选择的商品！
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary deleteMultySure" onclick="delSomeCart()">确定</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</c:if>
 
 <!--footer-->
 <div class="foot">
@@ -272,7 +316,7 @@
 <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 <script src="https://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
 <script type="text/javascript">
-    var goodsList = [
+   /* var goodsList = [
         {
             id: 145564876,
             imgUrl: 'img/4.jpg',
@@ -322,7 +366,7 @@
                 '</div>'
             $('.goods-content').append(goodsHtml)
         })
-    }
+    }*/
 
     function ShoppingCarObserver(elInput, isAdd) {
         if(elInput) {
@@ -498,15 +542,22 @@
             $('#deleteMultyTip').modal('show')
         }
     })
-    $('.deleteMultySure').on('click', function() {
+    // $('.deleteMultySure').on('click', function() {
+    //     for(var i = 0; i < $('.goods-list-item:checked').length; i++) {
+    //         var multyDelete = new ShoppingCarObserver($('.goods-list-item:checked').eq(i), null)
+    //         multyDelete.deleteGoods($('.goods-list-item:checked').val())
+    //         i--
+    //     }
+    //     var checkCount = new ShoppingCarObserver()
+    //     checkCount.checkOptions()
+    //     $('#deleteMultyTip').modal('hide')
+    // })
+    function delSomeCart() {
+        var str = "";
         for(var i = 0; i < $('.goods-list-item:checked').length; i++) {
-            var multyDelete = new ShoppingCarObserver($('.goods-list-item:checked').eq(i), null)
-            multyDelete.deleteGoods()
-            i--
+            str += ($('.goods-list-item:checked').eq(i).val() + ",");
         }
-        var checkCount = new ShoppingCarObserver()
-        checkCount.checkOptions()
-        $('#deleteMultyTip').modal('hide')
-    })
+        window.location.href = "${path}/cart?method=delSomeCart&str="+str;
+    }
 </script>
 </html>

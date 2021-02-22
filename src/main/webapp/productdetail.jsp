@@ -92,7 +92,7 @@
                 <div class="Xcontent20">
                     <p class="Xcontent21">促销</p>
                     <img src="images/shangpinxiangqing/X12.png">
-                    <p class="Xcontent22">领610元新年礼券，满再赠好礼</p>
+                    <p class="Xcontent22">新品限量</p>
                 </div>
                 <dproductbed.jspiv class="Xcontent23">
                     <p class="Xcontent24">服务</p>
@@ -109,13 +109,13 @@
                 <p class="Xcontent31">数量</p>
                 <div class="Xcontent32"><img src="images/shangpinxiangqing/X15.png"></div>
                 <form>
-                    <input class="input" value="1">
+                    <input class="input" value="1" id="quantity">
                 </form>
                 <div class="Xcontent33"><img src="images/shangpinxiangqing/16.png"></div>
 
             </div>
-            <div class="Xcontent34"><a href="#"><img src="images/shangpinxiangqing/X17.png"></a></div>
-            <div class="Xcontent35"><a href="#"><img src="images/shangpinxiangqing/X18.png"></a></div>
+            <div class="Xcontent34"><a href="#" ><img src="images/shangpinxiangqing/X17.png"></a></div>
+            <div class="Xcontent35"><input type="button" style="background: url('./images/shangpinxiangqing/X18.png') no-repeat -1px; height: 36px; width: 119px;" onclick="addCart()"></div>
         </ol>
     </ul>
 </div>
@@ -199,4 +199,10 @@
 
 </script>
 </body>
+<script>
+    function addCart() {
+        var buyNum = $("#quantity").val();
+        window.location.href = "${path}/cart?method=addCart&pid=${product.pid}&buyNum=" + buyNum;
+    }
+</script>
 </html>
