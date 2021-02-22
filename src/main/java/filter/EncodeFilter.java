@@ -1,29 +1,22 @@
 package filter;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
-/**
- * @Description TODO
- * @Author 王树阳
- * @Date 2021/1/30 22:32
- */
+@WebFilter(filterName = "EncodeFilter" , urlPatterns = "/*")
 public class EncodeFilter implements Filter {
-
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-
-    }
-
-    @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        servletRequest.setCharacterEncoding("utf-8");
-        servletResponse.setContentType("text/html;charset=utf-8");
-        filterChain.doFilter(servletRequest,servletResponse);
-    }
-
-    @Override
     public void destroy() {
+    }
+
+    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
+        req.setCharacterEncoding("utf-8");
+        resp.setContentType("text/html;charset=utf-8");
+        chain.doFilter(req, resp);
+    }
+
+    public void init(FilterConfig config) throws ServletException {
 
     }
+
 }

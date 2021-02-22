@@ -1,0 +1,204 @@
+.login-page {
+    width: 360px;
+	/* 上8%,左0,右0,下0 */
+    padding: 8% 0 0;
+	/* 外边距全部居中,全局居中 */
+    margin: auto;
+}
+
+.form {
+	/* 相对于正常位置的定义 */
+    position: relative;
+	/* 该属性设置一个定位元素沿 z 轴的位置，z 轴定义为垂直延伸到显示区的轴。
+	如果为正数，则离用户更近，为负数则表示离用户更远。 */
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding: 45px;
+    text-align: center;
+	/* 边框的阴影属性 */
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    border-radius:10px;
+}
+
+.form input {
+    font-family: "Roboto", sans-serif;
+	/* 在边框外面绘制一条线 */
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0px 0px 15px ;
+    padding: 15px;
+	/* 为元素设定的宽度和高度决定了元素的边框盒。 */         
+	/* 就是说，为元素指定的任何内边距和边框都将在已设定的宽度和高度内进行绘制。 */	
+	/* 通过从已设定的宽度和高度分别减去边框和内边距才能得到内容的宽度和高度。 */
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.form button {
+    font-family: "Microsoft YaHei", "Roboto", sans-serif;
+	/* 定义仅有大写字母 */
+    text-transform: uppercase;
+    outline: 0;
+    background: #c3587f;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+	/* 所有属性都将获得过渡效果,过渡时间,规定慢速开始，然后变快，然后慢速结束的过渡效果 */
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+	/* 光标呈现为指示链接的指针（一只手） */
+    cursor: pointer;
+}
+
+.form button:hover,
+.form button:active,
+.form button:focus {
+    background: #c3587f;
+}
+
+.form .message {
+    margin: 15px 0 0;
+    color: #b3b3b3;
+    font-size: 12px;
+}
+
+.form .message a {
+    color: #c3587f;
+    text-decoration: none;
+}
+
+.form .register-form {
+	/* 不显示 */
+    display: none;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.container:before,
+.container:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.container .info {
+    margin: 50px auto;
+    text-align: center;
+}
+
+.container .info h1 {
+    margin: 0 0 15px;
+    padding: 0;
+    font-size: 36px;
+    font-weight: 300;
+    color: #1a1a1a;
+}
+
+.container .info span {
+    color: #4d4d4d;
+    font-size: 12px;
+}
+
+.container .info span a {
+    color: #000000;
+    text-decoration: none;
+}
+
+.container .info span .fa {
+    color: #EF3B3A;
+}
+
+body {
+    /* background: #76b852; */
+    /* fallback for old browsers */
+   /* background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+    background: -moz-linear-gradient(right, #76b852, #8DC26F);
+    background: -o-linear-gradient(right, #76b852, #8DC26F);
+    background: linear-gradient(to left, #76b852, #8DC26F);*/
+	background: url(../img/login.jpg) no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+    font-family: "Roboto", sans-serif;
+	/* antialiased：抗锯齿很好 */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.shake_effect {
+    -webkit-animation-name: shake;
+    animation-name: shake;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+}
+
+/* 以百分比来规定改变发生的时间，或者通过关键词 "from" 和 "to"，
+等价于 0% 和 100%。0% 是动画的开始时间，100% 动画的结束时间。 */
+@-webkit-keyframes shake {
+
+    from,to {
+    	-webkit-transform: translate3d(0, 0, 0);
+    	transform: translate3d(0, 0, 0);
+    }
+
+    10%,30%,50%,70%,90%{
+    	-webkit-transform: translate3d(-10px, 0, 0);
+    	transform: translate3d(-10px, 0, 0);
+    }
+
+    20%,40%,60%,80% {
+    	-webkit-transform: translate3d(10px, 0, 0);
+    	transform: translate3d(10px, 0, 0);
+    }
+} 
+
+@keyframes shake {
+
+    from,to {    
+		/* transform 属性向元素应用 2D 或 3D 转换。该属性允许我们对元素进行旋转、缩放、移动或倾斜 */
+    	-webkit-transform: translate3d(0, 0, 0);
+    	transform: translate3d(0, 0, 0);
+    }
+
+    10%,30%,50%,70%,90% {
+    	-webkit-transform: translate3d(-10px, 0, 0);
+    	transform: translate3d(-10px, 0, 0);
+    }
+
+    20%,40%,60%,80% {
+    	-webkit-transform: translate3d(10px, 0, 0);
+    	transform: translate3d(10px, 0, 0);
+    }
+}
+
+p.center {
+    color: #fff;
+    font-family: "Microsoft YaHei";
+}
+
+#yzm{
+	height: 25px;
+	width: 120px;
+	font-size: 15px;
+	color: #FFFFFF;
+	line-height: 25px;
+	font-family: 楷体;
+	background-image: linear-gradient( 180.3deg,  rgba(214,224,255,1) 37.2%, rgba(254,168,168,1) 137.3% );
+	border-radius: 10px;
+	cursor: pointer;
+	margin: 0 auto;
+}
+
+#yzm:hover{
+	color: red;
+}

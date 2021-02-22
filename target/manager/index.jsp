@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html>
 <%--<html lang="en">--%>
 <head>
@@ -16,6 +17,7 @@
     <link rel="stylesheet" href="css/index.css" />
 </head>
 <body>
+<c:set value="${pageContext.request.contextPath}" scope="application" var="path"></c:set>
 <!--头部-->
 <div class="top">
     <div class="top-box">
@@ -65,7 +67,12 @@
         </div>
         <ul id="top-right-box1">
             <li><a href="index.jsp">首页</a></li>
+            <c:if test="${sessionScope.user==null}">
             <li><a href="login.jsp">登录/注册</a></li>
+            </c:if>
+            <c:if test="${sessionScope.user!=null}">
+                <li>欢迎${sessionScope.user.username}  /<a href="${path}/user?method=logout">退出</a></li>
+            </c:if>
             <li><a href="personalcenter.jsp">个人中心</a></li>
             <li><a href="#">商铺中心</a></li>
             <li><a href="#">客户服务</a></li>

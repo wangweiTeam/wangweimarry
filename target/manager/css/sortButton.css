@@ -1,0 +1,45 @@
+#sortButton {
+	height: 100px;
+	width: 100%;
+	background-color: #F0F0D8;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#sortButton button {
+	height: 50px;
+	width: 220px;
+	margin: 0 20px;
+	background: transparent;
+	-webkit-transition: all .5s ease;
+	transition: all .5s ease;
+	font-size: 25px;
+	font-family: "楷体";
+	letter-spacing: 3px;
+	box-shadow: 20px 38px 34px -26px rgba(0, 0, 0, 0.2);
+	border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+	-webkit-transform: translateZ(-100px);
+	transform: translateZ(-100px);
+	outline: none;
+}
+
+#sortButton button:hover {
+	box-shadow: 12px 18px 14px -16px rgba(0, 0, 0, 0.3);
+}
+
+.linedThick {
+	border: solid 5px #41403E;
+}
+
+.dottedThick {
+	border: dotted 5px #41403E;
+}
+
+.dashedThick {
+	border: dashed 2px #41403E;
+}
+
+.dashedThin {
+	border: solid 2px #41403E;
+}

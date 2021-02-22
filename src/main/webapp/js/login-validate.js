@@ -1,0 +1,21 @@
+//登录页面校验
+$(function () {
+    $("#loginForm").validate({
+        rules:{
+            "login_username":{
+                "required":true
+            },
+            "login_password":{
+                "required":true
+            }
+        },
+        messages:{
+            "login_username":{
+                "required":"请填入用户名！"
+            },
+            "login_password":{
+                "required":"请填入密码！"
+            }
+        }
+    });
+});

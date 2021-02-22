@@ -20,20 +20,23 @@ public class Users {
     private String telephone;
     private String bankCardID;
     private int state;
+    private String code;
+
 
 
     public Users() {
     }
 
-    public Users(String username, String password, String name, String email, String telephone) {
+    public Users(String username, String password,  String email, String telephone) {
         this.username = username;
         this.password = password;
-        this.name = name;
+
         this.email = email;
         this.telephone = telephone;
     }
 
-    public Users(int id, String username, String password, String headImgPath, String name, String sex, Date birthday, String shipAddr, String email, String telephone, String bankCardID, int state) {
+
+    public Users(int id, String username, String password, String headImgPath, String name, String sex, Date birthday, String shipAddr, String email, String telephone, String bankCardID, int state, String code) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -46,6 +49,7 @@ public class Users {
         this.telephone = telephone;
         this.bankCardID = bankCardID;
         this.state = state;
+        this.code = code;
     }
 
     /**
@@ -240,8 +244,24 @@ public class Users {
         this.state = state;
     }
 
+    /**
+     * 获取
+     * @return code
+     */
+    public String getCode() {
+        return code;
+    }
+
+    /**
+     * 设置
+     * @param code
+     */
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     public String toString() {
-        return "Users{id = " + id + ", username = " + username + ", password = " + password + ", headImgPath = " + headImgPath + ", name = " + name + ", sex = " + sex + ", birthday = " + birthday + ", shipAddr = " + shipAddr + ", email = " + email + ", telephone = " + telephone + ", bankCardID = " + bankCardID + ", state = " + state + "}";
+        return "Users{id = " + id + ", username = " + username + ", password = " + password + ", headImgPath = " + headImgPath + ", name = " + name + ", sex = " + sex + ", birthday = " + birthday + ", shipAddr = " + shipAddr + ", email = " + email + ", telephone = " + telephone + ", bankCardID = " + bankCardID + ", state = " + state + ", code = " + code + "}";
     }
 }
 

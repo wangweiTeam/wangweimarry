@@ -12,6 +12,15 @@ public class Useraddress {
     private String gdPhone;
     private String email;
     private int pid;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Useraddress() {
     }
@@ -23,6 +32,14 @@ public class Useraddress {
         this.gdPhone = gdPhone;
         this.email = email;
         this.pid = pid;
+    }
+
+    public Useraddress(String username, String detail, String phone, String gdPhone, String email) {
+        this.username = username;
+        this.detail = detail;
+        this.phone = phone;
+        this.gdPhone = gdPhone;
+        this.email = email;
     }
 
     /**
