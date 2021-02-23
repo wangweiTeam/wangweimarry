@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" isELIgnored="false" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <%--<html lang="en">--%>
 <head>
@@ -15,11 +16,12 @@
 </head>
 
 <body>
+<c:set var="path" scope="application" value="${pageContext.request.contextPath}"></c:set>
 <!--头 -->
 <div class="top">
     <div class="top-box">
         <ul id="top-right-box1">
-            <li><a href="index.jsp">首页</a></li>
+            <li><a href="${path}/product?method=index">首页</a></li>
             <li><a href="personalcenter.jsp">个人中心</a></li
             <li><a href="#">商铺中心</a></li>
             <li><a href="#">客户服务</a></li>

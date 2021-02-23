@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 //登录过滤器
-@WebFilter(filterName = "LoginFilter",urlPatterns = "/")
+@WebFilter(filterName = "LoginFilter",urlPatterns = "/order/*")
 public class LoginFilter implements Filter {
     public void destroy() {
     }

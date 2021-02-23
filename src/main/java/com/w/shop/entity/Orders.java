@@ -1,6 +1,8 @@
 package com.w.shop.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Description TODO
@@ -8,19 +10,32 @@ import java.util.Date;
  * @Date 2021/1/30 21:55
  */
 public class Orders {
+    //订单编号
     private String oid;
+    //下单时间
     private Date ordertime;
+    //订单总金额
     private double total;
+    //订单状态  0-未支付  1-已支付
     private int state;
+    //当前订单的收货地址
     private String address;
+    //当前订单的收货人名字
     private String name;
+    //当前订单的收货人电话
     private String telephone;
     private String uid;
+
+    //下单者的信息  一对一关联
+    private Users user;
+
+    //当前订单的订单明细  一对多关联
+    private List<OrderItem> itemList = new ArrayList<>();
 
     public Orders() {
     }
 
-    public Orders(String oid, Date ordertime, double total, int state, String address, String name, String telephone, String uid) {
+    public Orders(String oid, Date ordertime, double total, int state, String address, String name, String telephone, String uid, Users user, List<OrderItem> itemList) {
         this.oid = oid;
         this.ordertime = ordertime;
         this.total = total;
@@ -29,6 +44,8 @@ public class Orders {
         this.name = name;
         this.telephone = telephone;
         this.uid = uid;
+        this.user = user;
+        this.itemList = itemList;
     }
 
     /**
@@ -159,7 +176,39 @@ public class Orders {
         this.uid = uid;
     }
 
+    /**
+     * 获取
+     * @return user
+     */
+    public Users getUser() {
+        return user;
+    }
+
+    /**
+     * 设置
+     * @param user
+     */
+    public void setUser(Users user) {
+        this.user = user;
+    }
+
+    /**
+     * 获取
+     * @return itemList
+     */
+    public List<OrderItem> getItemList() {
+        return itemList;
+    }
+
+    /**
+     * 设置
+     * @param itemList
+     */
+    public void setItemList(List<OrderItem> itemList) {
+        this.itemList = itemList;
+    }
+
     public String toString() {
-        return "orders{oid = " + oid + ", ordertime = " + ordertime + ", total = " + total + ", state = " + state + ", address = " + address + ", name = " + name + ", telephone = " + telephone + ", uid = " + uid + "}";
+        return "Orders{oid = " + oid + ", ordertime = " + ordertime + ", total = " + total + ", state = " + state + ", address = " + address + ", name = " + name + ", telephone = " + telephone + ", uid = " + uid + ", user = " + user + ", itemList = " + itemList + "}";
     }
 }

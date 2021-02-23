@@ -1,5 +1,5 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" isELIgnored="false" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <%--<html lang="en">--%>
 <head>
@@ -233,7 +233,7 @@
                 <div class="col-md-2 bottom-menu">
                     <span>合计：<span id="selectGoodsMoney">0.00</span>元</span>
                 </div>
-                <a href="order.jsp">
+                <a href="${path}/order?method=submitOrder">
                     <div class="col-md-1 bottom-menu submitData submitDis">
                         提交订单
                     </div>

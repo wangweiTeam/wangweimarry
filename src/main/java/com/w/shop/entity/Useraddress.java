@@ -6,6 +6,7 @@ package com.w.shop.entity;
  * @Date 2021/1/30 22:00
  */
 public class Useraddress {
+    //收件人
     private String username;
     private String detail;
     private String phone;
